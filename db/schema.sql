@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS fnab_db;
+CREATE DATABASE fnab_db_db;
