@@ -37,6 +37,11 @@ User.init({
     modelName: 'user',
     hooks: {
         // Before saving, hash the password
+        beforeBulkCreate: async (user) => {
+
+user.password = await bcrypt.hash(user.password, 10);
+            return user;
+        },
         beforeCreate: async (user) => {
             user.password = await bcrypt.hash(user.password, 10);
             return user;
