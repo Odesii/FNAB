@@ -1,40 +1,46 @@
+const path = require('path');
 const express = require('express');
-const { sequelize } = require('./models');
 const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const routes = require('./routes');  // This line imports the centralized routes module
 const exphbs = require('express-handlebars');
+const routes = require('./routes');
+const helpers = require(`./utils/helpers.js`)
 
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+// Set up Handlebars.js engine with custom helpers
+const hbs = exphbs.create({ helpers });
+
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
+
+// Inform Express.js on which template engine to use
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-
-// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Session configuration
-app.use(session({
-    secret: 'super secret string', // You should move this to .env in production
-    store: new SequelizeStore({
-        db: sequelize,
-    }),
-    resave: false,
-    saveUninitialized: true,
-}));
+app.use(routes);
 
-// Use centralized routes
-app.use(routes);  // Using the centralized routes here
-
-// Start the server
-app.listen(PORT, async () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-    await sequelize.sync(); // Sync models with the database
-    console.log('Database synced!');
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
-
-module.exports = app;

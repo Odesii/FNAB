@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const { sequelize } = require('..config/connection.js');
+const sequelize = require('../config/connection.js');
 const bcrypt = require('bcrypt');
 
 class User extends Model {
@@ -40,6 +40,10 @@ User.init({
         beforeBulkCreate: async (user) => {
 
 user.password = await bcrypt.hash(user.password, 10);
+            return user;
+        },
+        beforeBulkCreate: async (user) => {
+            user.password = await bcrypt.hash(user.password, 10);
             return user;
         },
         beforeCreate: async (user) => {
