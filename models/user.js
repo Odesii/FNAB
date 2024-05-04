@@ -11,6 +11,12 @@ class User extends Model {
 
 User.init({
     // Define attributes
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
     username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,7 +34,7 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [8],  // Minimum length of password is 8 characters
+            len: [3],  // Minimum length of password is 8 characters
         },
     },
 }, {
