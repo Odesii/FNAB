@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../../models');
 
-
 // Register a new user
 router.post('/register', async (req, res) => {
     try {
@@ -34,7 +33,6 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.userId = user.id;
-            req.session.username = user.username;
             req.session.loggedIn = true;
 
             res.json({ user, message: 'You are now logged in!' });
