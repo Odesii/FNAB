@@ -6,6 +6,10 @@ const { Post, User } = require('../models');
 router.get('/', async (req, res) => {
     try {
         // Fetch all posts along with the user details
+        if(!req.session.loggedIn){
+            res.render('notlogged')
+            return;
+        }
         const postData = await Post.findAll({
             include: [
                 {
