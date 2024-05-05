@@ -56,29 +56,28 @@ router.get('/viewpost/:id', async (req, res) => {
     if (!req.session.loggedIn) {
         res.redirect('/login');
         return;
-    } else
+    }
 
     try {
         const post = await Post.findByPk(req.params.id, {
-            include: [{
-                model: User,
-                attributes: ['username']
-            },
-            {
-                model: Comment,
-                include: [
-                    {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                },
+                {
+                    model: Comment,
+                    include: [{
                         model: User,
                         attributes: ['username']
-                    }
-                ]
-            }
-        ]
+                    }]
+                }
+            ]
         });
 
         if (post) {
             const postPlain = post.get({ plain: true });
-            res.render('viewPost', { post: postPlain,  loggedIn: req.session.loggedIn });
+            res.render('viewPost', { post: postPlain, loggedIn: req.session.loggedIn });
         } else {
             res.status(404).send("Post not found");
         }

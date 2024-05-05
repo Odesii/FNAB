@@ -2,7 +2,28 @@
 <p>{{post.content}}</p>
 <small>Posted by {{post.user.username}} on {{post.createdAt}}</small>
 
-{{#each post.comment as |comment|}}
-<p>{{comment}}</p>
-<small>Posted by {{user.username}} by {{comment.createdAt}} </small>
-{{/each}}
+
+
+<form id="comment-form">
+    <textarea name="content" placeholder="Add a comment..." required></textarea>
+    <input type="hidden" name="postId" value="{{post.id}}">
+    <button type="submit">Comment</button>
+</form>
+
+{{#if post.comments}}
+    <h3>Comments:</h3>
+    <ul>
+        {{#each post.comments}}
+            <li>
+                <strong>{{this.user.username}}:</strong> {{this.content}}
+                <br>
+                <small>Posted on {{this.createdAt}}</small>
+            </li>
+        {{/each}}
+    </ul>
+
+{{else}}
+    <p>No comments yet.</p>
+{{/if}}
+
+<script src="./js/comments.js"></script>
