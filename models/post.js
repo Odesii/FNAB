@@ -28,7 +28,7 @@ Post.init({
 }, {
     sequelize,
     timestamps: true,
-    modelName: 'post'
+    modelName: 'posts',
 });
 
 module.exports = Post;

@@ -34,24 +34,20 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [3],  // Minimum length of password is 8 characters
+            len: [3], 
         },
     },
 }, {
     sequelize,
     timestamps: true,
-    modelName: 'user',
+    modelName: 'users',
     hooks: {
         // Before saving, hash the password
-        beforeBulkCreate: async (user) => {
 
-user.password = await bcrypt.hash(user.password, 10);
-            return user;
-        },
-        beforeBulkCreate: async (user) => {
-            user.password = await bcrypt.hash(user.password, 10);
-            return user;
-        },
+        // beforeBulkCreate: async (user) => {
+        //     user.password = await bcrypt.hash(user.password, 10);
+        //     return user;
+        // },
         beforeCreate: async (user) => {
             user.password = await bcrypt.hash(user.password, 10);
             return user;

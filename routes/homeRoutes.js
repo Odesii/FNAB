@@ -26,10 +26,32 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/dashboard', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+        return;
+    }
+
+    try {
+        const userPostsData = await Post.findAll({
+            where: {
+                userId: req.session.userId
+            },
+            include: [User]
+        });
+
+        const posts = userPostsData.map(post => post.get({ plain: true }));
+
+        res.render('dashboard', { posts, loggedIn: req.session.loggedIn });
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
-      res.redirect('/profile');
+      res.redirect('/dashboard');
       return;
     }
   

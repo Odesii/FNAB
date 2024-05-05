@@ -14,10 +14,11 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
+        console.log('YOU DID IT')
         // If successful, redirect the browser to the profile page
-        document.location.replace('/profile');
+        document.location.replace('/dashboard');
       } else {
-        alert(response.statusText);
+        alert('FUCK YOU', response.statusText);
       }
     }
   };
@@ -37,7 +38,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
