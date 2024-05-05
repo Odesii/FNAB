@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 
 // GET homepage
 router.get('/', async (req, res) => {
@@ -52,9 +52,45 @@ router.get('/dashboard', async (req, res) => {
     }
 });
 
+router.get('/viewpost/:id', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+        return;
+    } else
+
+    try {
+        const post = await Post.findByPk(req.params.id, {
+            include: [{
+                model: User,
+                attributes: ['username']
+            },
+            {
+                model: Comment,
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
+            }
+        ]
+        });
+
+        if (post) {
+            const postPlain = post.get({ plain: true });
+            res.render('viewPost', { post: postPlain,  loggedIn: req.session.loggedIn });
+        } else {
+            res.status(404).send("Post not found");
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
       res.redirect('/dashboard');
       return;
     }

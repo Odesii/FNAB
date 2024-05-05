@@ -1,0 +1,8 @@
+<h1>{{post.title}}</h1>
+<p>{{post.content}}</p>
+<small>Posted by {{post.user.username}} on {{post.createdAt}}</small>
+
+{{#each post.comment as |comment|}}
+<p>{{comment}}</p>
+<small>Posted by {{user.username}} by {{comment.createdAt}} </small>
+{{/each}}
