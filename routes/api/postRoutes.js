@@ -1,5 +1,6 @@
 const express = require('express');
 const { Post } = require('../../models');
+const { Model } = require('sequelize');
 const router = express.Router();
 
 // Get all posts
@@ -9,6 +10,20 @@ router.get('/', async (req, res) => {
         res.json(posts);
     } catch (error) {
         res.status(500).json(error);
+    }
+});
+
+//Get post by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const post = await Post.findByPk(req.params.id);
+        if (post) {
+            res.json(post);
+        } else {
+            res.status(404).json({ message: "Post not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 });
 
@@ -27,7 +42,7 @@ router.post('/new', async (req, res) => {
 });
 
 // Update a post
-router.put('/edit/:id', async (req, res) => {
+router.put('/editSave/:id', async (req, res) => {
     try {
         const updatedPost = await Post.update(req.body, {
             where: { id: req.params.id }
