@@ -1,12 +1,12 @@
 document.getElementById('comment-form').addEventListener('submit', async function(event) {
   event.preventDefault();
 
-  const form = event.target;
-  const { content, postId } = form.querySelectorAll('textarea[name="content"], input[name="postId"]');
+  const content = document.querySelector('textarea[name="content"]').value;
+  const postId = document.querySelector('input[name="postId"]').value;
 
   const response = await fetch('/api/comments/new', {
     method: 'POST',
-    body: JSON.stringify({ content: content.value, postId: postId.value }),
+    body: JSON.stringify({ content: content, postId: postId, userId: "{{session.userId}}" }),  // Assuming you have the userId in session storage, or pass it correctly
     headers: { 'Content-Type': 'application/json' }
   });
 

@@ -7,7 +7,9 @@
 <form id="comment-form">
     <textarea name="content" placeholder="Add a comment..." required></textarea>
     <input type="hidden" name="postId" value="{{post.id}}">
-    <button type="submit">Comment</button>
+    <input type="hidden" name="userId" value="{{session.userId}}">
+    
+    <button type="submit" id="com-sub">Comment</button>
 </form>
 
 {{#if post.comments}}
@@ -26,4 +28,4 @@
     <p>No comments yet.</p>
 {{/if}}
 
-<script src="./js/comments.js"></script>
+<script src="../js/comment.js"></script>

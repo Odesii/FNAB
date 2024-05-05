@@ -1,0 +1,105 @@
+/* General body styling */
+body {
+    background-color: #0a0a0a; /* Dark background */
+    color: #0f0; /* Bright green text, typical of hacker themes */
+    font-family: 'Courier New', monospace; /* Monospaced font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header, footer {
+    background-color: #000; /* Even darker shade for header and footer */
+    color: #0f0;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+/* Link styling */
+a {
+    color: #9f0; /* Slightly different green for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+/* Forms and inputs */
+.form {
+    background-color: #222;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.form input, .form textarea, .form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.form label {
+    color: #0f0;
+}
+
+.btn-primary {
+    background-color: #005500;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #007700;
+}
+
+.btn-danger {
+    background-color: #550000;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #770000;
+}
+
+/* Footer styling */
+footer p {
+    margin: 0;
+}
+
+/* Post styling */
+.post {
+    border-bottom: 1px dashed #333;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* High contrast and visibility */
+* {
+    border-color: #333; /* Subtle borders for some elements */
+}
+
+/* Utility classes */
+.edit-me, .btn-danger {
+    margin: 5px 0;
+    display: inline-block;
+}
