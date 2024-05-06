@@ -1,4 +1,5 @@
-<h1>{{post.title}}</h1>
+<section>
+<h2>{{post.title}}</h2>
 <p>{{post.content}}</p>
 <small>Posted by {{post.user.username}} on {{post.createdAt}}</small>
 
@@ -13,7 +14,7 @@
 </form>
 
 {{#if post.comments}}
-    <h3>Comments:</h3>
+    <h4>Comments:</h4>
     <ul>
         {{#each post.comments}}
             <li>
@@ -27,5 +28,5 @@
 {{else}}
     <p>No comments yet.</p>
 {{/if}}
-
+</section>
 <script src="../js/comment.js"></script>

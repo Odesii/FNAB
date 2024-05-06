@@ -1,105 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 /* General body styling */
 body {
     background-color: #0a0a0a; /* Dark background */
     color: #0f0; /* Bright green text, typical of hacker themes */
-    font-family: 'Courier New', monospace; /* Monospaced font */
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+    font-family: 'JetBrains Mono', monospace; /* Monospaced font */
 
+}
 header, footer {
-    background-color: #000; /* Even darker shade for header and footer */
+    display: flex;
+    justify-content: center;
+    align-content: space-evenly;
+    background-color: #000; 
     color: #0f0;
-    padding: 10px 20px;
+
     text-align: center;
+    width: 100%; 
 }
 
-h1, h2 {
-    font-weight: normal;
-}
 
 /* Link styling */
 a {
+    font-size: 12px;
     color: #9f0; /* Slightly different green for links */
     text-decoration: none;
 }
 
-a:hover {
+nav a:hover {
     text-decoration: underline;
+    font-size: 18px;
 }
 
 /* Navigation styling */
-nav ul {
+nav ul{
     list-style: none;
-    padding: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 15px;
+small{
+    font-size: 10px;
+    font-style: oblique;
 }
 
-/* Forms and inputs */
-.form {
-    background-color: #222;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.form input, .form textarea, .form button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-}
-
-.form label {
+button {
+    background-color: #1f1f1f;
     color: #0f0;
-}
+    font-size: 10px;
 
-.btn-primary {
-    background-color: #005500;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
+    border-radius: 1px;
     cursor: pointer;
+  }
+  button:hover {
+    background-color: #444;
+  }
+  
+  button:active {
+    background-color: #43fd52;
+  }
+
+  button a{
+    font-size: 10px;
+  }
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
 
-.btn-primary:hover {
-    background-color: #007700;
+#p-link {
+    color: rgb(151, 255, 66);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+#p-link:hover {
+    color: rgb(98, 0, 255);
+    font-size: 16px;
 }
 
-.btn-danger {
-    background-color: #550000;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.btn-danger:hover {
-    background-color: #770000;
-}
-
-/* Footer styling */
-footer p {
-    margin: 0;
-}
-
-/* Post styling */
-.post {
-    border-bottom: 1px dashed #333;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-/* High contrast and visibility */
-* {
-    border-color: #333; /* Subtle borders for some elements */
-}
-
-/* Utility classes */
-.edit-me, .btn-danger {
-    margin: 5px 0;
-    display: inline-block;
+#why {
+ text-align: center;   
 }

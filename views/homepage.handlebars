@@ -1,10 +1,12 @@
+<section>
 {{#each posts}}
     <div class="post">
         <h2>{{this.title}}</h2>
         <p>{{this.content}}</p>
         <small>Posted by {{this.user.username}} on {{this.createdAt}}</small>
     </div>
-    <button><a href="/viewpost/{{this.id}}">VIEW</a></button>
+    <a id="p-link" href="/viewpost/{{this.id}}">**VIEW**</a>
 {{else}}
     <p>No posts found.</p>
 {{/each}}
+</section>

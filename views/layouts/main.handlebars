@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love blogs</title>
-    <link rel="stylesheet" href="./css/style.css">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+    <title>Not Another One</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <header>
@@ -13,20 +13,19 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-            </ul>
-        </nav>
                 {{#if loggedIn}}
                     <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/" method="post">Logout</a></li>
+                    <li><button id="logout" href="/" method="post">Logout</button></li>
                 {{else}}
-                <h2>WHY NO LOG IN </h2>
                     <li><a href="/login">Login</a></li>
+            </ul>
                 {{/if}}
+        </nav>
     </header>
     
     {{{body}}}
 
-
+<script src="/js/logout.js"></script>
     <footer>
         <p>©AAAAAAAAAAAAAAAAAAAA</p>
     </footer>

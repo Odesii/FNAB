@@ -85,7 +85,6 @@ const editBtnHandler = async (event) => {
       if (response.ok) {
         console.log('Post created successfully!');
         document.location.replace('/')
-        // You can also reload the page or update the posts list here
       } else {
         console.error('Failed to create post!');
       }
