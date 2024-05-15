@@ -1,4 +1,4 @@
-# FNAB (FUCK NOT ANOTHER BLOG)
+# FNAB (F**K NOT ANOTHER BLOG)
 *Skip this README at your own peril—it's like ignoring the warning label on a firework. Surprisingly common and mildly entertaining for the bystanders.*
 
 ## Overview
